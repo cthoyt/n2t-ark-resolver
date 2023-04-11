@@ -13,5 +13,6 @@ python -m pip install -r requirements.txt
 python wsgi.py
 ```
 
-Then, navigate to http://localhost:5000/ark:/53355/cl010277627 to get some nice art from the Louvre.
+Then, navigate to http://localhost:5000/ark:/53355/cl010277627 to redirect yourself to
+https://collections.louvre.fr/ark:/53355/cl010277627 and get some nice art from the Louvre.
 In general, you can stick any ARK after `http://localhost:5000/ark:` that is resolvable via N2T.

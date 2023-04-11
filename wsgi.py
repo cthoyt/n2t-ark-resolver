@@ -1,6 +1,6 @@
 """Implement an ARK metaresolver based on N2T.
 
-1. Run this file with ``python n2t_arks.py``
+1. Run this file with ``python wsgi.py``
 2. Navigate to http://localhost:5000/ark:/53355/cl010277627
 3. You get redirected to https://collections.louvre.fr/ark:/53355/cl010277627
 """
