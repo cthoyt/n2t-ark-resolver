@@ -1,0 +1,3 @@
+pystow
+curies[flask]
+pyyaml
