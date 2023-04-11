@@ -5,11 +5,11 @@
 3. You get redirected to https://collections.louvre.fr/ark:/53355/cl010277627
 """
 
-import pystow
+import unittest
 
+import pystow
 import yaml
 from curies import Converter, get_flask_app
-import unittest
 
 URL = "https://n2t.net/e/n2t_full_prefixes.yaml"
 PROTOCOLS = {"https://", "http://", "ftp://"}
@@ -21,18 +21,20 @@ def get_prefix_map():
         records = yaml.safe_load(file)
     prefix_map = {}
     for key, record in records.items():
-        redirect = record.get('redirect')
+        redirect = record.get("redirect")
         if not redirect:
             continue
         if all(not redirect.startswith(protocol) for protocol in PROTOCOLS):
             continue
-        if redirect.count('$id') != 1:
+        if redirect.count("$id") != 1:
             continue
         if not redirect.endswith("$id"):
             continue
         if not key.startswith("ark:/"):
             continue
-        prefix_map[key.removeprefix("ark:/")] = redirect.removesuffix("$id") + "/" + key.removeprefix("ark:/") + "/"
+        prefix_map[key.removeprefix("ark:/")] = (
+            redirect.removesuffix("$id") + "/" + key.removeprefix("ark:/") + "/"
+        )
 
     return prefix_map
 
@@ -61,5 +63,5 @@ class TestApp(unittest.TestCase):
             self.assertEqual(302, res.status_code)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     get_app().run()
